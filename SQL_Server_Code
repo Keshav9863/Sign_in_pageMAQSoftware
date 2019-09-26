@@ -1,0 +1,20 @@
+link for STORED PROCEDURE HASH FILE : https://www.mssqltips.com/sqlservertip/4037/storing-passwords-in-a-secure-way-in-a-sql-server-database/
+STORED PROCEDURE TO HASH THE PASSWORD FILE IN THE SERVER
+    -> [dbo].[uspAddUser] : Add user in the database
+        EXECUTION TO ADD USER IN THE DATABASE
+        > DECLARE	@responseMessage nvarchar(250)
+        EXEC dbo.uspAddUser
+          @pLogin = 'keshavy@maqsoftware.com',
+          @pPassword = '#1Password',
+          @pFirstName = 'Keshav',
+          @pLastName = 'Yadav',
+          @responseMessage=@responseMessage OUTPUT
+        SELECT	@responseMessage as 'Message'
+
+    -> [dbo].[uspLogin] : authenticate the user in the database
+        > DECLARE	@responseMessage nvarchar(250)
+           EXEC	dbo.uspLogin
+		   @pLoginName = ?,
+		   @pPassword = ?,
+		   @responseMessage = @responseMessage OUTPUT
+           SELECT	@responseMessage as 'Message'
